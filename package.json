@@ -1,0 +1,28 @@
+{
+  "name": "karsy-node",
+  "version": "1.0.0",
+  "description": "karsy后端服务（基于node）",
+  "main": "index.js",
+  "scripts": {
+    "init": "node init/index.js",
+    "start": "supervisor –harmony index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karsy/karsy-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karsy/karsy-node/issues"
+  },
+  "homepage": "https://github.com/karsy/karsy-node#readme",
+  "dependencies": {
+    "koa": "^2.5.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-cors": "^0.0.16",
+    "koa-router": "^7.4.0",
+    "moment": "^2.22.1"
+  }
+}
