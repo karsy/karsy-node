@@ -7,7 +7,24 @@ const retValue = require('../lib/retValue');
 router.post('/blog/insertArticle', async(ctx, next) => {
   const queryData = ctx.request.body;
   console.log(queryData);
-  await sqlModule.insertArticle(['第一篇', '摘要', '我是内容我是内容', new Date(1524811580694)])
+  await sqlModule.insertArticle([queryData.title, queryData.sort, queryData.digest, queryData.content, new Date()])
+          .then(result => {
+              ctx.body = {
+                content: retValue(true, null)
+              };
+          }).catch((err)=>{
+            ctx.response.status = '500';
+            ctx.body = {
+              content: retValue(false, null),
+              error: err
+            };
+          })  
+})
+
+// 新增分类
+router.post('/blog/insertSort', async(ctx, next) => {
+  const queryData = ctx.request.body;
+  await sqlModule.insertSort(['javascript', 'javascript','html5', new Date(1524811580694)])
           .then(result => {
               console.log(result);
               ctx.body = {

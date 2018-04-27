@@ -17,9 +17,19 @@ const article =
      date DATETIME NOT NULL,
      sort VARCHAR(100) NOT NULL,
      PRIMARY KEY ( id )
-    )default charset utf8;`
+    )ENGINE=InnoDB DEFAULT CHARSET=utf8;`
+
+const sort =
+    `create table if not exists sort(
+     id INT NOT NULL AUTO_INCREMENT,
+     type VARCHAR(100) NOT NULL,
+     name VARCHAR(100) NOT NULL,
+     icon VARCHAR(100) NOT NULL,
+     PRIMARY KEY ( id )
+    )ENGINE=InnoDB DEFAULT CHARSET=utf8;`
 
 module.exports = {
   users,
-  article
+  article,
+  sort
 };
