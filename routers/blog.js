@@ -6,7 +6,6 @@ const retValue = require('../lib/retValue');
 // 插入文章
 router.post('/blog/insertArticle', async(ctx, next) => {
   const queryData = ctx.request.body;
-  console.log(queryData);
   await sqlModule.insertArticle([queryData.title, queryData.sort, queryData.digest, queryData.content, new Date()])
           .then(result => {
               ctx.body = {
