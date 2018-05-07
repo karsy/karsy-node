@@ -4,7 +4,7 @@ const users =
      name VARCHAR(100) NOT NULL,
      pass VARCHAR(100) NOT NULL,
      avator VARCHAR(100) NOT NULL,
-     moment VARCHAR(100) NOT NULL,
+     date DATETIME NOT NULL,
      PRIMARY KEY ( id )
     );`
 
@@ -24,7 +24,9 @@ const sort =
      id INT NOT NULL AUTO_INCREMENT,
      type VARCHAR(100) NOT NULL,
      name VARCHAR(100) NOT NULL,
-     icon VARCHAR(100) NOT NULL,
+     logo VARCHAR(100) NOT NULL,
+     description VARCHAR(100) NOT NULL,
+     date DATETIME NOT NULL,
      PRIMARY KEY ( id )
     )ENGINE=InnoDB DEFAULT CHARSET=utf8;`
 

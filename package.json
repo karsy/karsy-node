@@ -19,9 +19,11 @@
   },
   "homepage": "https://github.com/karsy/karsy-node#readme",
   "dependencies": {
+    "formidable": "^1.2.1",
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.0",
     "koa-cors": "^0.0.16",
+    "koa-multer": "^1.0.2",
     "koa-router": "^7.4.0",
     "moment": "^2.22.1"
   }
