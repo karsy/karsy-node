@@ -13,4 +13,4 @@ Promise.all(tables)
   }).catch((err) => {
     console.log(err);
     console.log('[ERROR] sql脚本文件执行失败 o(╯□╰)o ！');
-  })
+  });

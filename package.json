@@ -24,9 +24,13 @@
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.0",
     "koa-cors": "^0.0.16",
-    "koa-multer": "^1.0.2",
     "koa-router": "^7.4.0",
     "moment": "^2.22.1",
     "mysql": "^2.15.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-ais": "^0.0.16"
   }
 }

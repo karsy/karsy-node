@@ -6,7 +6,7 @@ const users =
      avator VARCHAR(100) NOT NULL,
      date DATETIME NOT NULL,
      PRIMARY KEY ( id )
-    );`
+    );`;
 
 const article =
     `create table if not exists article(
@@ -17,7 +17,7 @@ const article =
      date DATETIME NOT NULL,
      sort VARCHAR(100) NOT NULL,
      PRIMARY KEY ( id )
-    )ENGINE=InnoDB DEFAULT CHARSET=utf8;`
+    )ENGINE=InnoDB DEFAULT CHARSET=utf8;`;
 
 const sort =
     `create table if not exists sort(
@@ -28,7 +28,7 @@ const sort =
      description VARCHAR(100) NOT NULL,
      date DATETIME NOT NULL,
      PRIMARY KEY ( id )
-    )ENGINE=InnoDB DEFAULT CHARSET=utf8;`
+    )ENGINE=InnoDB DEFAULT CHARSET=utf8;`;
 
 module.exports = {
   users,
