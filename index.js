@@ -17,6 +17,17 @@ app.use(bodyParser());
 //  路由
 // app.use(require('./routers/blog.js').routes())
 //统一加载路由
+const handler = async (ctx, next) => {
+    try {
+      await next();
+    } catch (err) {
+      ctx.response.status = err.statusCode || err.status || 500;
+      ctx.response.body = {
+        message: err.message
+      };
+    }
+  };
+app.use(handler)
 app.use(require('./load-router.js').routes())
 
 app.listen(config.port)
