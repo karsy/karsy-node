@@ -1,4 +1,3 @@
-const moment = require('moment');
 const formidable = require('formidable');
 const fs = require('fs');
 const sqlModule = require('../lib/sqlModule');
