@@ -1,7 +1,7 @@
 const formidable = require('formidable');
 const fs = require('fs');
-const sqlModule = require('../lib/sqlModule');
-const retValue = require('../lib/retValue');
+const sqlModule = require('../../lib/sqlModule');
+const retValue = require('../../lib/retValue');
 
 module.exports = function (router) {
   router.get('/onlytest', async (ctx) => {
@@ -19,6 +19,41 @@ module.exports = function (router) {
         ctx.response.status = '500';
         ctx.body = {
           content: retValue(false, null),
+          error: err
+        };
+      });
+  });
+
+  // 查询所有文章
+  router.get('/blog/queryArticle', async (ctx) => {
+    const queryData = ctx.request.query;
+    await sqlModule.queryArticleByPage(queryData.currentPage || 1, queryData.pageSize || 10)
+      .then((result) => {
+        ctx.body = {
+          content: retValue(true, result)
+        };
+      }).catch((err) => {
+        ctx.response.status = '500';
+        ctx.body = {
+          content: retValue(false, []),
+          error: err
+        };
+      });
+  });
+
+  // 查询文章详情
+  router.get('/blog/getArticleById', async (ctx) => {
+    const queryData = ctx.request.query;
+    await sqlModule.queryArticleById(queryData.id)
+      .then((result) => {
+        ctx.body = {
+          content: retValue(true, result.length ? result[0] : {})
+        };
+      }).catch((err) => {
+        console.log(err);
+        ctx.response.status = '500';
+        ctx.body = {
+          content: retValue(false, []),
           error: err
         };
       });
@@ -75,4 +110,6 @@ module.exports = function (router) {
         };
       });
   });
+
+  //
 };
