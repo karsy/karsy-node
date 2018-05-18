@@ -26,14 +26,18 @@ module.exports = function (router) {
 
   // 查询所有文章
   router.get('/blog/queryArticle', async (ctx) => {
-    const queryData = ctx.request.query;
-    await sqlModule.queryArticleByPage(queryData.currentPage || 1, queryData.pageSize || 10)
+    const { currentPage, pageSize, sort, type, key } = ctx.request.query;
+    await sqlModule.queryArticleByPage(currentPage, pageSize, sort, type, key)
       .then((result) => {
+        console.log(result[1]);
+        console.log(result[1].total);
         ctx.body = {
-          content: retValue(true, result)
+          content: retValue(true, result[0], {
+            total: result[1][0].total
+          })
         };
       }).catch((err) => {
-        ctx.response.status = '500';
+        ctx.response.status = 500;
         ctx.body = {
           content: retValue(false, []),
           error: err
