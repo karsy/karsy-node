@@ -4,13 +4,27 @@ const sqlModule = require('../../lib/sqlModule');
 const retValue = require('../../lib/retValue');
 
 module.exports = function (router) {
-  router.get('/onlytest', async (ctx) => {
-    ctx.response.body = 'yyy';
-  });
   // 插入文章
   router.post('/blog/insertArticle', async (ctx) => {
     const queryData = ctx.request.body;
     await sqlModule.insertArticle([queryData.title, queryData.sort, queryData.digest, queryData.content, new Date()])
+      .then(() => {
+        ctx.body = {
+          content: retValue(true, null)
+        };
+      }).catch((err) => {
+        ctx.response.status = '500';
+        ctx.body = {
+          content: retValue(false, null),
+          error: err
+        };
+      });
+  });
+
+  // 删除文章
+  router.get('/blog/deleteArticle', async (ctx) => {
+    const { id } = ctx.request.query;
+    await sqlModule.deleteArticle(id)
       .then(() => {
         ctx.body = {
           content: retValue(true, null)
@@ -29,8 +43,6 @@ module.exports = function (router) {
     const { currentPage, pageSize, sort, type, key } = ctx.request.query;
     await sqlModule.queryArticleByPage(currentPage, pageSize, sort, type, key)
       .then((result) => {
-        console.log(result[1]);
-        console.log(result[1].total);
         ctx.body = {
           content: retValue(true, result[0], {
             total: result[1][0].total
@@ -54,7 +66,6 @@ module.exports = function (router) {
           content: retValue(true, result.length ? result[0] : {})
         };
       }).catch((err) => {
-        console.log(err);
         ctx.response.status = '500';
         ctx.body = {
           content: retValue(false, []),
@@ -98,10 +109,8 @@ module.exports = function (router) {
   // 新增分类
   router.post('/blog/insertSort', async (ctx) => {
     const queryData = ctx.request.body;
-    console.log(queryData);
     await sqlModule.insertSort([queryData.name, queryData.type, queryData.description, queryData.logo, new Date()])
       .then((result) => {
-        console.log(result);
         ctx.body = {
           content: retValue(true, null)
         };
