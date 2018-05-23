@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "init": "node init/index.js",
-    "start": "supervisor –harmony index",
+    "start": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -31,6 +31,7 @@
   "devDependencies": {
     "babel-eslint": "^8.2.3",
     "eslint": "^4.19.1",
-    "eslint-config-ais": "^0.0.16"
+    "eslint-config-ais": "^0.0.16",
+    "nodemon": "^1.16.0"
   }
 }
