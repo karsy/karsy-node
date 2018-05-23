@@ -21,6 +21,23 @@ module.exports = function (router) {
       });
   });
 
+  // 更新文章
+  router.post('/blog/updateArticle', async (ctx) => {
+    const queryData = ctx.request.body;
+    await sqlModule.updateArticle([queryData.title, queryData.sort, queryData.digest, queryData.content, new Date(), queryData.id])
+      .then(() => {
+        ctx.body = {
+          content: retValue(true, null)
+        };
+      }).catch((err) => {
+        ctx.response.status = '500';
+        ctx.body = {
+          content: retValue(false, null),
+          error: err
+        };
+      });
+  });
+
   // 删除文章
   router.get('/blog/deleteArticle', async (ctx) => {
     const { id } = ctx.request.query;
@@ -110,7 +127,7 @@ module.exports = function (router) {
   router.post('/blog/insertSort', async (ctx) => {
     const queryData = ctx.request.body;
     await sqlModule.insertSort([queryData.name, queryData.type, queryData.description, queryData.logo, new Date()])
-      .then((result) => {
+      .then(() => {
         ctx.body = {
           content: retValue(true, null)
         };
@@ -123,6 +140,4 @@ module.exports = function (router) {
         };
       });
   });
-
-  //
 };

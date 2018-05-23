@@ -30,8 +30,19 @@ const sort =
      PRIMARY KEY ( id )
     )ENGINE=InnoDB DEFAULT CHARSET=utf8;`;
 
+const menu =
+    `create table if not exists menu(
+     id INT NOT NULL AUTO_INCREMENT,
+     path VARCHAR(10) NOT NULL,
+     name VARCHAR(10) NOT NULL,
+     icon VARCHAR(100),
+     parent INT NOT NULL,
+     PRIMARY KEY ( id )
+    )ENGINE=InnoDB DEFAULT CHARSET=utf8;`;
+
 module.exports = {
   users,
   article,
-  sort
+  sort,
+  menu
 };
